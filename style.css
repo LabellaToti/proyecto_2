@@ -6,6 +6,8 @@
 main{
     height: 70%;
 }
+
+/* Cosas en comun */
 footer{
     height: 10%;
     background-color: #B3005E;
@@ -17,6 +19,15 @@ footer{
     border-radius: 0 0 1.2rem 0;
 }
 
+.img-card{
+    height: 40%;
+}
+.card-text{
+    height: 60%;
+}
+.card-footer{
+    height: 13%;
+}
 .btn{
     background-color:#FF5F9E;
     color: #060047;
@@ -40,11 +51,31 @@ footer{
 
 
 
-.carousel-item{
+.carousel{
     background-color: #E90064;
-    padding-left: 43%;
-    padding-top: 15px;
+    
 }
+
+.activo{
+    font-size: 1.1em;
+    font-weight: bolder;
+
+}
+
+a:hover{
+    transform: scale(1.1);
+    background-color: #B3005E;
+    border-radius: 2rem;
+}
+#logo:hover{
+    background-color: #060047 ;
+   
+} 
+
+
+
+
+/* Contacto */
 .formulario{
     height: 400px;
     background-color: #060047 ;
@@ -57,18 +88,7 @@ footer{
 
 }
 
-
-
-.activo{
-    font-size: 1.1em;
-}
-
-a:hover{
-    transform: scale(1.1);
-    background-color: #B3005E;
-    border-radius: 2rem;
-
-}
+/* Stats */
 table{
     background-color: aquamarine;
     margin-top: 20px;
@@ -91,10 +111,13 @@ th{
     font-weight: bolder;
     text-align: center;
 }
-.card-img-details{
-    
-    width: 30%;
-}
+
+/* Details */
+
 .details-cont{
-    width: 70%;
+    width: 90%;
+}
+
+.detail-gral{
+    height: 80vh;
 }
