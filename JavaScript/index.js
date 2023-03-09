@@ -52,7 +52,7 @@ let categorias = new Set()
 
   categorias.forEach(event => {
     let boxes = document.createElement("div")
-    boxes.innerHTML= `<div class="form-check col-12 col-md-2 col-lg-1">
+    boxes.innerHTML= `<div class="form-check">
     <input class="form-check-input" type="checkbox" value="${event}" id="${event}">
     <label class="form-check-label" for="${event}">
       ${event}

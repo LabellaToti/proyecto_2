@@ -11,11 +11,12 @@ const eventoDetallado = data.events.find(event=> event._id == id)
 
 const detailCard = document.querySelector('#detailCard')
 
-detailCard.innerHTML = ` <div class="card mt-5 me-3" style="width: 18rem;">
+detailCard.innerHTML = ` <div class="card mt-5 me-3" style="width: 38rem;">
 <img src="${eventoDetallado.image}" class="card-img-top img-card" alt="evento">
 <div class="card-body">
   <h5 class="card-title">${eventoDetallado.name}</h5>
   <p class="card-text">${eventoDetallado.description}</p>
+  <p class="card-text">Place: ${eventoDetallado.place}</p>
   <p class> Date: ${eventoDetallado.date}</p>
 </div>
 <div class="card-footer d-flex justify-content-between">
