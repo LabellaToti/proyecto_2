@@ -3,25 +3,98 @@ const hoy = new Date(data.currentDate)
 
 const contenedorTarjetas = document.querySelector('#contenedorTarjetas')
 
-let tarjetas = ''
+
+function crearTarjetas(eventos){
+  contenedorTarjetas.innerHTML = ""
+  if(eventos.length>0){
+    eventos.forEach(event => {
+      let tarjetas = document.createElement("div")
+      tarjetas.innerHTML = `<div class="card mt-5 me-3" style="width: 18rem;">
+        <img src="${event.image}" class="card-img-top img-card" alt="evento">
+        <div class="card-body">
+          <h5 class="card-title">${event.name}</h5>
+          <p class="card-text">${event.description}</p>
+          <p class> Date: ${event.date}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <p class="mt-2">Price: ${event.price}</p>
+          <a href="../details.html?id=${event._id}" class="btn btn-primary">See more</a>
+        </div>
+      </div>`
+      contenedorTarjetas.appendChild(tarjetas)
+      
+    })
+  } else {
+    contenedorTarjetas.innerHTML = `<h2> Not Found</h2>`
+  } 
+}
+  
+  let eventosPasados = data.events.filter((evento)=> new Date(evento.date) < hoy)
+
+crearTarjetas(eventosPasados)
 
 
-for (const event of data.events) {
-    let fecha = new Date(event.date)
-    if(fecha < hoy){
-     tarjetas += `<div class="card mt-5 me-3" style="width: 18rem;">
-    <img src="${event.image}" class="card-img-top img-card" alt="evento">
-    <div class="card-body">
-      <h5 class="card-title">${event.name}</h5>
-      <p class="card-text">${event.description}</p>
-      <p class> Date: ${event.date}</p>
-    </div>
-    <div class="card-footer d-flex justify-content-between">
-      <p class="mt-2">Price: ${event.price}</p>
-      <a href="../details.html" class="btn btn-primary">See more</a>
-    </div>
+
+// Filtro del buscador
+
+let buscador = document.getElementById("buscador")
+
+
+  buscador.addEventListener("input",filtrarContenido)
+
+
+//Crear checkboxes
+
+const checkboxes = document.getElementById("checkboxes")
+
+let categorias = new Set()
+ 
+
+  data.events.forEach( event => categorias.add(event.category) )
+
+  categorias.forEach(event => {
+    let boxes = document.createElement("div")
+    boxes.innerHTML= `<div class="form-check col-12 col-md-2 col-lg-1">
+    <input class="form-check-input" type="checkbox" value="${event}" id="${event}">
+    <label class="form-check-label" for="${event}">
+      ${event}
+    </label>
   </div>`
-}
-}
+    checkboxes.appendChild(boxes)
+  })
 
-contenedorTarjetas.innerHTML = tarjetas
+
+
+
+
+
+
+// Filtro de checkbox
+const boxes = document.querySelectorAll(".form-check-input")
+  
+ boxes.forEach(caja => caja.addEventListener("click",filtrarContenido))
+
+
+ // filtar todo
+
+function filtrarContenido(){
+  let palabraEscrita = buscador.value.toLowerCase()
+  let chequeados = []
+
+  boxes.forEach(caja =>{
+    if (caja.checked == true){
+      chequeados.push(caja.value)
+    }
+  } )
+
+  let eventosFiltrados = eventosPasados
+  
+  eventosFiltrados = eventosFiltrados.filter((evento) => evento.name.toLowerCase().includes(palabraEscrita))
+  if (chequeados.length > 0){
+    eventosFiltrados = eventosFiltrados.filter(evento => chequeados.includes(evento.category))
+  }
+
+
+  crearTarjetas(eventosFiltrados)
+  
+}

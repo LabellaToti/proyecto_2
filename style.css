@@ -9,7 +9,7 @@ main{
 
 /* Cosas en comun */
 footer{
-    height: 10%;
+    height: 7%;
     background-color: #B3005E;
     margin-top: 50px;
 }
@@ -17,6 +17,7 @@ footer{
 .card{
     box-shadow: 10px 5px 5px #FF5F9E;
     border-radius: 0 0 1.2rem 0;
+    height: 95%;
 }
 
 .img-card{
@@ -114,10 +115,4 @@ th{
 
 /* Details */
 
-.details-cont{
-    width: 90%;
-}
 
-.detail-gral{
-    height: 80vh;
-}
