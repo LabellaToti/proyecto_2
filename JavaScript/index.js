@@ -1,5 +1,4 @@
 /** Crear las tarjetas a partir de la base de datos */
-const currentDate = "2022-01-01"
 const contenedorTarjetas = document.querySelector('#contenedorTarjetas')
 
 
@@ -30,29 +29,41 @@ function crearTarjetas(eventos){
   }
   
 }
-crearTarjetas(data.events)
 
 
-// Filtro del buscador
-
+const checkboxes = document.getElementById("checkboxes")
 let buscador = document.getElementById("buscador")
 
 
-  buscador.addEventListener("input",filtrarContenido)
+// Extraer datos de la Api
+
+
+//fetch("./amazing_1.json")
+fetch('https://mindhub-xj03.onrender.com/api/amazing').then(response => response.json().then(datosApi=>
+{console.log(datosApi);
+    console.log(datosApi.events[4]);
+    crearTarjetas(datosApi.events)
+
+    
+  // Filtro del buscador
+
+
+
+
+buscador.addEventListener("input",filtrarContenido)
 
 
 //Crear checkboxes
 
-const checkboxes = document.getElementById("checkboxes")
+
 
 let categorias = new Set()
- 
-
-  data.events.forEach( event => categorias.add(event.category) )
-
+  
+  datosApi.events.forEach( event => categorias.add(event.category) )
+  
   categorias.forEach(event => {
     let boxes = document.createElement("div")
-    boxes.innerHTML= `<div class="form-check">
+    boxes.innerHTML= `<div class="form-check  me-2 col-lg-1">
     <input class="form-check-input" type="checkbox" value="${event}" id="${event}">
     <label class="form-check-label" for="${event}">
       ${event}
@@ -63,36 +74,35 @@ let categorias = new Set()
 
 
 
-
-
-
-
 // Filtro de checkbox
 const boxes = document.querySelectorAll(".form-check-input")
-  
- boxes.forEach(caja => caja.addEventListener("click",filtrarContenido))
 
+boxes.forEach(caja => caja.addEventListener("click",filtrarContenido))
 
- // filtar todo
+//Funcino para filtar todo 
 
 function filtrarContenido(){
   let palabraEscrita = buscador.value.toLowerCase()
   let chequeados = []
-
+  
   boxes.forEach(caja =>{
     if (caja.checked == true){
       chequeados.push(caja.value)
     }
   } )
-
-  let eventosFiltrados = data.events
+  
+  let eventosFiltrados = datosApi.events
   
   eventosFiltrados = eventosFiltrados.filter((evento) => evento.name.toLowerCase().includes(palabraEscrita))
   if (chequeados.length > 0){
     eventosFiltrados = eventosFiltrados.filter(evento => chequeados.includes(evento.category))
   }
-
-
+  
+  
   crearTarjetas(eventosFiltrados)
   
-}
+  }
+
+
+
+}))

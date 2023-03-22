@@ -1,5 +1,5 @@
 
-const hoy = new Date(data.currentDate)
+
 
 const contenedorTarjetas = document.querySelector('#contenedorTarjetas')
 
@@ -29,18 +29,91 @@ function crearTarjetas(eventos){
   } 
 }
   
-  let eventosPasados = data.events.filter((evento)=> new Date(evento.date) < hoy)
 
-crearTarjetas(eventosPasados)
+
 
 
 
 // Filtro del buscador
 
+// let buscador = document.getElementById("buscador")
+
+
+//   buscador.addEventListener("input",filtrarContenido)
+
+
+//Crear checkboxes
+
+// const checkboxes = document.getElementById("checkboxes")
+
+// let categorias = new Set()
+ 
+
+//   data.events.forEach( event => categorias.add(event.category) )
+
+//   categorias.forEach(event => {
+//     let boxes = document.createElement("div")
+//     boxes.innerHTML= `<div class="form-check col-12 col-md-2 col-lg-1">
+//     <input class="form-check-input" type="checkbox" value="${event}" id="${event}">
+//     <label class="form-check-label" for="${event}">
+//       ${event}
+//     </label>
+//   </div>`
+//     checkboxes.appendChild(boxes)
+//   })
+
+
+
+
+
+
+
+// Filtro de checkbox
+// const boxes = document.querySelectorAll(".form-check-input")
+  
+//  boxes.forEach(caja => caja.addEventListener("click",filtrarContenido))
+
+
+ // filtar todo
+
+// function filtrarContenido(){
+//   let palabraEscrita = buscador.value.toLowerCase()
+//   let chequeados = []
+
+//   boxes.forEach(caja =>{
+//     if (caja.checked == true){
+//       chequeados.push(caja.value)
+//     }
+//   } )
+
+//   let eventosFiltrados = eventosPasados
+  
+//   eventosFiltrados = eventosFiltrados.filter((evento) => evento.name.toLowerCase().includes(palabraEscrita))
+//   if (chequeados.length > 0){
+//     eventosFiltrados = eventosFiltrados.filter(evento => chequeados.includes(evento.category))
+//   }
+
+
+//   crearTarjetas(eventosFiltrados)
+  
+// }
+
+fetch('https://mindhub-xj03.onrender.com/api/amazing').then(response => response.json().then(datosApi=>
+{console.log(datosApi);
+    console.log(datosApi.events[4]);
+    let hoy = new Date(datosApi.currentDate)
+    console.log(hoy)
+    let eventosPasados = datosApi.events.filter((evento)=> new Date(evento.date) < hoy)
+    console.log(eventosPasados)
+    crearTarjetas(eventosPasados)
+
+    
+  // Filtro del buscador
+
 let buscador = document.getElementById("buscador")
 
 
-  buscador.addEventListener("input",filtrarContenido)
+buscador.addEventListener("input",filtrarContenido)
 
 
 //Crear checkboxes
@@ -48,13 +121,12 @@ let buscador = document.getElementById("buscador")
 const checkboxes = document.getElementById("checkboxes")
 
 let categorias = new Set()
- 
-
-  data.events.forEach( event => categorias.add(event.category) )
-
+  
+  datosApi.events.forEach( event => categorias.add(event.category) )
+  
   categorias.forEach(event => {
     let boxes = document.createElement("div")
-    boxes.innerHTML= `<div class="form-check col-12 col-md-2 col-lg-1">
+    boxes.innerHTML= `<div class="form-check  me-2 col-lg-1">
     <input class="form-check-input" type="checkbox" value="${event}" id="${event}">
     <label class="form-check-label" for="${event}">
       ${event}
@@ -65,36 +137,35 @@ let categorias = new Set()
 
 
 
-
-
-
-
 // Filtro de checkbox
 const boxes = document.querySelectorAll(".form-check-input")
-  
- boxes.forEach(caja => caja.addEventListener("click",filtrarContenido))
 
+boxes.forEach(caja => caja.addEventListener("click",filtrarContenido))
 
- // filtar todo
+//Funcino para filtar todo 
 
 function filtrarContenido(){
   let palabraEscrita = buscador.value.toLowerCase()
   let chequeados = []
-
+  
   boxes.forEach(caja =>{
     if (caja.checked == true){
       chequeados.push(caja.value)
     }
   } )
-
+  
   let eventosFiltrados = eventosPasados
   
   eventosFiltrados = eventosFiltrados.filter((evento) => evento.name.toLowerCase().includes(palabraEscrita))
   if (chequeados.length > 0){
     eventosFiltrados = eventosFiltrados.filter(evento => chequeados.includes(evento.category))
   }
-
-
+  
+  
   crearTarjetas(eventosFiltrados)
   
-}
+  }
+
+
+
+}))

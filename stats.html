@@ -17,10 +17,10 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-nav-header">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" id="logo" href="#">
                     <img src="./assets/Resources Amazing Events/LogoAmazingEvents.png" alt="" width="80" height="60">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <button class="navbar-toggler bg-boton-nav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -54,92 +54,62 @@
 
         <nav class="carousel">
             <div class="container d-flex justify-content-between ">
-              <div class="col-1">
-                <a class="carousel-control-prev-icon mt-2" id="lastNavBar" href="./contact.html"></a>
-              </div>
-              <div class="col-10">
-                <h1 class="text-white text-center">Stats</h1>
-              </div>
-              <div class="col-1">
-                <a class="carousel-control-next-icon mt-2" id="nextNavBar" href="./index.html"></a>
-              </div>
+                <div class="col-1">
+                    <a class="carousel-control-prev-icon mt-2" id="lastNavBar" href="./contact.html"></a>
+                </div>
+                <div class="col-10">
+                    <h1 class="text-white text-center">Stats</h1>
+                </div>
+                <div class="col-1">
+                    <a class="carousel-control-next-icon mt-2" id="nextNavBar" href="./index.html"></a>
+                </div>
             </div>
-          </nav>
+        </nav>
         <!-- TABLA -->
-        <div class="container-fluid justify-content-center">
-            <table class="justify-self-center">
-
+        <div class="container-fluid d-flex flex-column align-items-center mt-5">
+            
+            <table>
                 <thead>
                     <th colspan="3">Events statics</th>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Eventes with te highest prcentage of attendance</td>
-                        <td>Eventes with te lowest prcentage of attendance</td>
+                        <td>Events with te highest prcentage of attendance</td>
+                        <td>Events with te lowest prcentage of attendance</td>
                         <td>Event with larger capacity</td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Upcoming events statics by category</th>
-                    </tr>
-                    <tr>
-                        <td>Categories</td>
-                        <td>Revenues</td>
-                        <td>porcentage of attendance</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <th colspan="3">Past Events statics for category</th>
-                    <tr>
-                        <td>Categories</td>
-                        <td>Revenues</td>
-                        <td>porcentage of attendance</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr id="todo">
+                        <td class="text-white" id="eventoPopular"></td>
+                        <td class="text-white" id="eventoMenosPopular"></td>
+                        <td class="text-white" id="eventoMayorCapacidad"></td>
                     </tr>
                 </tbody>
-
             </table>
+            <table>
+                <thead>
+                    <th colspan="3" id="upcomingEvents">Upcoming events statics by category</th>
+                </thead>
+                <tbody id="upcomingStats">
+                    <tr>
+                        <td>Categories</td>
+                        <td>Revenues</td>
+                        <td>porcentage of attendance</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <th colspan="3" >Past events statics by category</th>
+                </thead>
+                <tbody id="pastStats">
+                    <tr>
+                        <td>Categories</td>
+                        <td>Revenues</td>
+                        <td>porcentage of attendance</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
 
     </main>
@@ -178,6 +148,8 @@
         crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/7bd86e340e.js" crossorigin="anonymous"></script>
+    <script src="./JavaScript/Data.js"></script>
+    <script src="./JavaScript/stats.js"></script>
 </body>
 
 </html>

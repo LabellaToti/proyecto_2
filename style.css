@@ -1,17 +1,27 @@
-*{
+ *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+ html{
+    width: 100%;
+    height: 25%;
+ }
+ body{
+    width: 100%;
+ }
+
 main{
     height: 70%;
+    
 }
 
-/* Cosas en comun */
+
 footer{
     height: 7%;
     background-color: #B3005E;
-    margin-top: 50px;
+    margin-top: 200px;
+
 }
 
 .card{
@@ -50,6 +60,10 @@ footer{
 
 }
 
+.bg-boton-nav{
+    background-color: #FF5F9E;
+}
+
 
 
 .carousel{
@@ -76,7 +90,7 @@ a:hover{
 
 
 
-/* Contacto */
+
 .formulario{
     height: 400px;
     background-color: #060047 ;
@@ -89,16 +103,14 @@ a:hover{
 
 }
 
-/* Stats */
+
 table{
     background-color: aquamarine;
-    margin-top: 20px;
-    width: 80%;
-    margin: 10%;
-    margin-top:5%;
+    width: 100%;
 }
 td{
     height: 1.1rem;
+    width: 33%;
     border: 1px solid #060047;
     background-color: #FF5F9E;
     color: black;
@@ -113,6 +125,8 @@ th{
     text-align: center;
 }
 
-/* Details */
+
+  
+
 
 
